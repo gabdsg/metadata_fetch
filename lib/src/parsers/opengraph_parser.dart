@@ -14,6 +14,13 @@ class OpenGraphParser extends BaseMetadataParser {
       ?.querySelector("[property*='og:title']")
       ?.attributes
       ?.get('content');
+  
+  /// Get [Metadata.url] from 'og:url'
+  @override
+  String get url => document?.head
+      ?.querySelector("[property*='og:url']")
+      ?.attributes
+      ?.get('content');
 
   /// Get [Metadata.description] from 'og:description'
   @override
