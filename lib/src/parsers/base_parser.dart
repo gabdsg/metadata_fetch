@@ -1,6 +1,7 @@
 /// The base class for implementing a parser
 abstract class BaseMetadataParser {
   String title;
+  String url;
   String description;
   String image;
   String androidUrl;
@@ -11,6 +12,7 @@ abstract class BaseMetadataParser {
   Metadata parse() {
     var m = Metadata();
     m.title = title;
+    m.url = url;
     m.description = description;
     m.image = image;
     m.androidUrl = androidUrl ?? "";
@@ -23,6 +25,7 @@ abstract class BaseMetadataParser {
   Map<String, String> toMap() {
     return {
       'title': title,
+      'url': url,
       'description': description,
       'image': image,
     };
