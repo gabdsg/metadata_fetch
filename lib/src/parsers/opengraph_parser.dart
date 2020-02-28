@@ -28,4 +28,13 @@ class OpenGraphParser extends BaseMetadataParser {
       ?.querySelector("[property*='og:image']")
       ?.attributes
       ?.get('content');
+  
+  
+  String get androidUrl => document?.head?.querySelector("[property*='al:android:url']")?.attributes?.get('content');
+
+  String get iosUrl => document?.head?.querySelector("[property*='al:ios:url']")?.attributes?.get('content');
+  
+  String get musicPreviewUrl => document?.head?.querySelector("[property*='music:preview_url:url']")?.attributes?.get('content');
+
+  String get musicPreviewType => document?.head?.querySelector("[property*='music:preview_url:type']")?.attributes?.get('content');
 }
