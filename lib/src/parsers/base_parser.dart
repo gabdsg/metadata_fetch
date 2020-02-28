@@ -3,12 +3,20 @@ abstract class BaseMetadataParser {
   String title;
   String description;
   String image;
+  String androidUrl;
+  String iosUrl;
+  String musicPreviewUrl;
+  String musicPreviewType;
 
   Metadata parse() {
     var m = Metadata();
     m.title = title;
     m.description = description;
     m.image = image;
+    m.androidUrl = androidUrl ?? "";
+    m.iosUrl = iosUrl ?? "";
+    m.musicPreviewUrl = musicPreviewUrl  ?? "";
+    m.musicPreviewType = musicPreviewType;
     return m;
   }
 
