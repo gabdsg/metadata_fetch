@@ -1,13 +1,13 @@
 /// The base class for implementing a parser
 abstract class BaseMetadataParser {
-  String title;
-  String url;
-  String description;
-  String image;
-  String androidUrl;
-  String iosUrl;
-  String musicPreviewUrl;
-  String musicPreviewType;
+  String? title;
+  String? url;
+  String? description;
+  String? image;
+  String? androidUrl;
+  String? iosUrl;
+  String? musicPreviewUrl;
+  String? musicPreviewType;
 
   Metadata parse() {
     var m = Metadata();
@@ -17,12 +17,12 @@ abstract class BaseMetadataParser {
     m.image = image;
     m.androidUrl = androidUrl ?? "";
     m.iosUrl = iosUrl ?? "";
-    m.musicPreviewUrl = musicPreviewUrl  ?? "";
+    m.musicPreviewUrl = musicPreviewUrl ?? "";
     m.musicPreviewType = musicPreviewType;
     return m;
   }
 
-  Map<String, String> toMap() {
+  Map<String, String?> toMap() {
     return {
       'title': title,
       'url': url,

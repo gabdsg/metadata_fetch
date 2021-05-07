@@ -6,7 +6,7 @@ class MetadataParser {
   /// This is the default strategy for building our [Metadata]
   ///
   /// It tries [OpenGraphParser], then [JsonLdParser], and falls back to [HTMLMetaParser] tags for missing data.
-  static Metadata parse(Document document) {
+  static Metadata parse(Document? document) {
     var output = Metadata();
 
     var parsers = [
@@ -35,15 +35,15 @@ class MetadataParser {
     return output;
   }
 
-  static Metadata OpenGraph(Document document) {
+  static Metadata OpenGraph(Document? document) {
     return OpenGraphParser(document).parse();
   }
 
-  static Metadata HtmlMeta(Document document) {
+  static Metadata HtmlMeta(Document? document) {
     return HtmlMetaParser(document).parse();
   }
 
-  static Metadata JsonLdSchema(Document document) {
+  static Metadata JsonLdSchema(Document? document) {
     return JsonLdParser(document).parse();
   }
 }

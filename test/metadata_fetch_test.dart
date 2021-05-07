@@ -8,7 +8,7 @@ void main() {
   // TODO: Use a Mock Server for testing
 
   test('Metadata Parser', () async {
-    var url = 'https://flutter.dev';
+    var url = Uri.parse('https://flutter.dev');
     var response = await http.get(url);
     var document = responseToDocument(response);
 
@@ -29,7 +29,7 @@ void main() {
   });
   group('Metadata parsers', () {
     test('JSONLD', () async {
-      var url = 'https://www.epicurious.com/';
+      var url = Uri.parse('https://www.epicurious.com/');
       var response = await http.get(url);
       var document = responseToDocument(response);
       // print(response.statusCode);
@@ -38,8 +38,8 @@ void main() {
     });
 
     test('JSONLD II', () async {
-      var url =
-          'https://www.epicurious.com/expert-advice/best-soy-sauce-chefs-pick-article';
+      var url = Uri.parse(
+          'https://www.epicurious.com/expert-advice/best-soy-sauce-chefs-pick-article');
       var response = await http.get(url);
       var document = responseToDocument(response);
       // print(response.statusCode);
@@ -48,8 +48,8 @@ void main() {
     });
 
     test('JSONLD III', () async {
-      var url =
-          'https://medium.com/@quicky316/install-flutter-sdk-on-windows-without-android-studio-102fdf567ce4';
+      var url = Uri.parse(
+          'https://medium.com/@quicky316/install-flutter-sdk-on-windows-without-android-studio-102fdf567ce4');
       var response = await http.get(url);
       var document = responseToDocument(response);
       // print(response.statusCode);
@@ -58,7 +58,7 @@ void main() {
     });
 
     test('JSONLD IV', () async {
-      var url = 'https://www.distilled.net/';
+      var url = Uri.parse('https://www.distilled.net/');
       var response = await http.get(url);
       var document = responseToDocument(response);
       // print(response.statusCode);
@@ -66,7 +66,7 @@ void main() {
       print(JsonLdParser(document));
     });
     test('HTML', () async {
-      var url = 'https://flutter.dev';
+      var url = Uri.parse('https://flutter.dev');
       var response = await http.get(url);
       var document = responseToDocument(response);
       print(response.statusCode);
@@ -77,7 +77,7 @@ void main() {
     });
 
     test('OpenGraph Parser', () async {
-      var url = 'https://flutter.dev';
+      var url = Uri.parse('https://flutter.dev');
       var response = await http.get(url);
       var document = responseToDocument(response);
       print(response.statusCode);
@@ -89,7 +89,7 @@ void main() {
     });
 
     test('Faulty', () async {
-      var url = 'https://google.ca';
+      var url = Uri.parse('https://google.ca');
       var response = await http.get(url);
       var document = responseToDocument(response);
       print(response.statusCode);
@@ -108,24 +108,24 @@ void main() {
     test('First Test', () async {
       var data = await extract('https://flutter.dev/');
       print(data);
-      print(data.description);
-      expect(data.toMap().isEmpty, false);
+      print(data?.description);
+      expect(data?.toMap().isEmpty, false);
     });
 
     test('FB Test', () async {
       var data = await extract('https://facebook.com/');
-      expect(data.toMap().isEmpty, false);
+      expect(data?.toMap().isEmpty, false);
     });
 
     test('Unicode Test', () async {
       var data = await extract('https://www.jpf.go.jp/');
-      expect(data.toMap().isEmpty, false);
+      expect(data?.toMap().isEmpty, false);
     });
 
     test('Gooogle Test', () async {
       var data = await extract('https://google.ca');
-      expect(data.toMap().isEmpty, false);
-      expect(data.title, 'google');
+      expect(data?.toMap().isEmpty, false);
+      expect(data?.title, 'google');
     });
 
     test('Invalid Url Test', () async {

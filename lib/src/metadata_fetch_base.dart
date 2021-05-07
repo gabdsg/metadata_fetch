@@ -8,7 +8,7 @@ import 'package:metadata_fetch/src/utils/util.dart';
 import 'package:string_validator/string_validator.dart';
 
 /// Fetches a [url], validates it, and returns [Metadata].
-Future<Metadata> extract(String url) async {
+Future<Metadata?> extract(String url) async {
   if (!isURL(url)) {
     return null;
   }
@@ -19,8 +19,9 @@ Future<Metadata> extract(String url) async {
   default_output.description = url;
 
   // Make our network call
-  var response = await http.get(url);
-  var document = responseToDocument(response);
+  final uri = Uri.parse(url);
+  var response = await http.get(uri);
+  Document? document = responseToDocument(response);
 
   if (document == null) {
     return default_output;
@@ -34,12 +35,12 @@ Future<Metadata> extract(String url) async {
 }
 
 /// Takes an [http.Response] and returns a [html.Document]
-Document responseToDocument(http.Response response) {
+Document? responseToDocument(http.Response response) {
   if (response.statusCode != 200) {
     return null;
   }
 
-  Document document;
+  Document? document;
   try {
     document = parser.parse(utf8.decode(response.bodyBytes));
   } catch (err) {
@@ -52,6 +53,6 @@ Document responseToDocument(http.Response response) {
 /// Returns instance of [Metadata] with data extracted from the [html.Document]
 ///
 /// Future: Can pass in a strategy i.e: to retrieve only OpenGraph, or OpenGraph and Json+LD only
-Metadata _extractMetadata(Document document) {
+Metadata? _extractMetadata(Document document) {
   return MetadataParser.parse(document);
 }
