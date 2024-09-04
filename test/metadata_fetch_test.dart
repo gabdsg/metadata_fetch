@@ -1,7 +1,5 @@
 import 'package:metadata_fetch/metadata_fetch.dart';
 import 'package:http/http.dart' as http;
-import 'package:metadata_fetch/src/parsers/jsonld_parser.dart';
-import 'package:metadata_fetch/src/parsers/parsers.dart';
 import 'package:test/test.dart';
 
 void main() {
